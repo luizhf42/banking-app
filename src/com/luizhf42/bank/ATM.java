@@ -10,8 +10,7 @@ public class ATM {
     private final List<Account> accounts = new ArrayList<>();
 
     public void initialize() {
-        final Account newAccount = createAccount();
-        accounts.add(newAccount);
+        createAccount();
         while (true) try {
             showMenu();
         } catch (Exception exception) {
@@ -30,6 +29,11 @@ public class ATM {
         }
     }
 
+    public void createAccount() {
+        final Account newAccount = new Account(readAccountOwnerName(), readAccountId(), readAccountBalance());
+        accounts.add(newAccount);
+    }
+
     private void showAccounts() {
         System.out.println("\nExisting accounts:");
         for (int i = 0; i < accounts.size(); i++) {
@@ -45,9 +49,6 @@ public class ATM {
         System.out.println();
     }
 
-    public Account createAccount() {
-        return new Account(readAccountOwnerName(), readAccountId(), readAccountBalance());
-    }
 
     private String readAccountOwnerName() {
         while (true) try {

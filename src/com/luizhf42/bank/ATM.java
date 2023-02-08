@@ -34,7 +34,7 @@ public class ATM {
     }
 
     public void createAccount() {
-        final Account newAccount = new Account(readAccountOwnerName(), readAccountId(), readAccountBalance());
+        final Account newAccount = new Account(readAccountOwnerName(), accounts.size() + 1, readAccountBalance());
         accounts.add(newAccount);
     }
 
@@ -60,16 +60,6 @@ public class ATM {
             return scanner.next();
         } catch (InputMismatchException exception) {
             System.out.println("Invalid name!");
-            scanner.next();
-        }
-    }
-
-    private int readAccountId() {
-        while (true) try {
-            System.out.print("Enter the account identifier (number): ");
-            return scanner.nextInt();
-        } catch (InputMismatchException exception) {
-            System.out.println("Invalid ID!");
             scanner.next();
         }
     }

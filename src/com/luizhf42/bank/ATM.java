@@ -19,11 +19,15 @@ public class ATM {
     }
 
     public void showMenu() {
-        System.out.println("Choose an option: ");
+        System.out.println("Menu: ");
         System.out.println("1 - Show accounts");
+        System.out.println("2 - Create new account");
+        System.out.println("5 - Exit the ATM");
+        System.out.print("Choose an option: ");
         int chosenOption = scanner.nextInt();
         switch (chosenOption) {
             case 1 -> showAccounts();
+            case 2 -> createAccount();
             case 5 -> System.exit(0);
             default -> System.out.println("Invalid option!");
         }

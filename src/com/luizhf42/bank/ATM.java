@@ -53,6 +53,23 @@ public class ATM {
         System.out.println();
     }
 
+    private void deposit() {
+        int accountId;
+        while (true) try {
+            accountId = readAccountId();
+            if (accountId > accounts.size() + 1) {
+                throw new Exception();
+            } else break;
+        } catch (Exception exception) {
+            System.out.println("Nonexistent account ID! Try again!");
+        }
+
+        System.out.print("Insert the amount you want to deposit: ");
+        long amount = scanner.nextLong();
+
+        Account account = accounts.get(accountId - 1);
+        account.updateBalance(account.getBalance() + amount);
+    }
 
     private String readAccountOwnerName() {
         while (true) try {

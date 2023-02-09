@@ -73,5 +73,15 @@ public class ATM {
             scanner.next();
         }
     }
+
+    private int readAccountId() {
+        while (true) try {
+            System.out.print("Insert the account ID: ");
+            return scanner.nextInt();
+        } catch (InputMismatchException exception) {
+            System.out.println("Invalid ID!");
+            scanner.next();
+        }
+    }
 }
 

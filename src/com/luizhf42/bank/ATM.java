@@ -24,6 +24,7 @@ public class ATM {
         System.out.println("2 - Show one account");
         System.out.println("3 - Create new account");
         System.out.println("4 - Make a deposit");
+        System.out.println("5 - Withdraw money");
         System.out.println("6 - Exit the ATM");
         System.out.print("Choose an option: ");
         int chosenOption = scanner.nextInt();
@@ -37,6 +38,7 @@ public class ATM {
             }
             case 3 -> createAccount();
             case 4 -> deposit();
+            case 5 -> withdraw();
             case 6 -> System.exit(0);
             default -> System.out.println("Invalid option!");
         }
@@ -69,6 +71,19 @@ public class ATM {
 
         Account account = accounts.get(accountId - 1);
         account.updateBalance(account.getBalance() + amount);
+
+    private void withdraw() {
+        final int accountId = getAccountIndex();
+        System.out.print("Insert the amount you want to withdraw: ");
+        final long amount = scanner.nextLong();
+
+        final Account account = accounts.get(accountId - 1);
+        final long actualBalance = account.getBalance();
+        final long newBalance = actualBalance - amount;
+        if (newBalance >= 0) {
+            account.updateBalance(newBalance);
+            System.out.printf("Success! Now your balance is %d", actualBalance);
+        } else System.out.println("Insufficient balance to withdraw!");
     }
 
     private String readAccountOwnerName() {

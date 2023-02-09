@@ -23,12 +23,22 @@ public class ATM {
         System.out.println("1 - Show accounts");
         System.out.println("2 - Create new account");
         System.out.println("5 - Exit the ATM");
+        System.out.println("1 - Show all accounts");
+        System.out.println("2 - Show one account");
+        System.out.println("3 - Create new account");
+        System.out.println("4 - Make a deposit");
+        System.out.println("6 - Exit the ATM");
         System.out.print("Choose an option: ");
         int chosenOption = scanner.nextInt();
         switch (chosenOption) {
             case 1 -> showAccounts();
-            case 2 -> createAccount();
-            case 5 -> System.exit(0);
+            case 2 -> {
+                int index = readAccountId() - 1;
+                showAccountDetails(index);
+            }
+            case 3 -> createAccount();
+            case 4 -> deposit();
+            case 6 -> System.exit(0);
             default -> System.out.println("Invalid option!");
         }
     }

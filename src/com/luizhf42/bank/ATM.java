@@ -27,7 +27,7 @@ public class ATM {
         System.out.println("5 - Withdraw money");
         System.out.println("6 - Exit the ATM");
         System.out.print("Choose an option: ");
-        int chosenOption = scanner.nextInt();
+        final int chosenOption = scanner.nextInt();
         System.out.println();
 
         switch (chosenOption) {
@@ -57,7 +57,7 @@ public class ATM {
     }
 
     private void showAccountDetails(int index) {
-        Account account = accounts.get(index);
+        final Account account = accounts.get(index);
         System.out.println("Owner: " + account.getOwnerName());
         System.out.println("ID: " + account.getId());
         System.out.println("Actual balance: " + account.getBalance());
@@ -65,15 +65,14 @@ public class ATM {
     }
 
     private void deposit() {
-        int accountId = getAccountIndex();
+        final int accountId = getAccountIndex();
         System.out.print("Insert the amount you want to deposit: ");
-        long amount = scanner.nextLong();
+        final long amount = scanner.nextLong();
 
-        Account account = accounts.get(accountId - 1);
-        long actualBalance = account.getBalance();
+        final Account account = accounts.get(accountId - 1);
+        final long actualBalance = account.getBalance();
         account.updateBalance(actualBalance + amount);
         System.out.printf("Success! Now your balance is %d", actualBalance);
-
     }
 
     private void withdraw() {

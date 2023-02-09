@@ -20,9 +20,6 @@ public class ATM {
 
     public void showMenu() {
         System.out.println("Menu: ");
-        System.out.println("1 - Show accounts");
-        System.out.println("2 - Create new account");
-        System.out.println("5 - Exit the ATM");
         System.out.println("1 - Show all accounts");
         System.out.println("2 - Show one account");
         System.out.println("3 - Create new account");
@@ -30,6 +27,8 @@ public class ATM {
         System.out.println("6 - Exit the ATM");
         System.out.print("Choose an option: ");
         int chosenOption = scanner.nextInt();
+        System.out.println();
+
         switch (chosenOption) {
             case 1 -> showAccounts();
             case 2 -> {
@@ -49,7 +48,7 @@ public class ATM {
     }
 
     private void showAccounts() {
-        System.out.println("\nExisting accounts:");
+        System.out.println("Existing accounts:");
         for (int i = 0; i < accounts.size(); i++) {
             showAccountDetails(i);
         }

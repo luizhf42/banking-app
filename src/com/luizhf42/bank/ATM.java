@@ -70,7 +70,11 @@ public class ATM {
         long amount = scanner.nextLong();
 
         Account account = accounts.get(accountId - 1);
-        account.updateBalance(account.getBalance() + amount);
+        long actualBalance = account.getBalance();
+        account.updateBalance(actualBalance + amount);
+        System.out.printf("Success! Now your balance is %d", actualBalance);
+
+    }
 
     private void withdraw() {
         final int accountId = getAccountIndex();

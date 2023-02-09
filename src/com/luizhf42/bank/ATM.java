@@ -63,16 +63,7 @@ public class ATM {
     }
 
     private void deposit() {
-        int accountId;
-        while (true) try {
-            accountId = readAccountId();
-            if (accountId > accounts.size() + 1) {
-                throw new Exception();
-            } else break;
-        } catch (Exception exception) {
-            System.out.println("Nonexistent account ID! Try again!");
-        }
-
+        int accountId = getAccountIndex();
         System.out.print("Insert the amount you want to deposit: ");
         long amount = scanner.nextLong();
 
@@ -107,6 +98,18 @@ public class ATM {
         } catch (InputMismatchException exception) {
             System.out.println("Invalid ID!");
             scanner.next();
+        }
+    }
+
+    private int getAccountIndex() {
+        int accountId;
+        while (true) try {
+            accountId = readAccountId();
+            if (accountId > accounts.size() + 1) {
+                throw new Exception();
+            } else return accountId;
+        } catch (Exception exception) {
+            System.out.println("Nonexistent account ID! Try again!");
         }
     }
 }

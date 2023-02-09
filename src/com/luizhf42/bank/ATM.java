@@ -25,7 +25,7 @@ public class ATM {
         System.out.println("3 - Create new account");
         System.out.println("4 - Make a deposit");
         System.out.println("5 - Withdraw money");
-        System.out.println("6 - Exit the ATM");
+        System.out.println("0 - Exit the ATM");
         System.out.print("Choose an option: ");
         final int chosenOption = scanner.nextInt();
         System.out.println();
@@ -39,7 +39,7 @@ public class ATM {
             case 3 -> createAccount();
             case 4 -> deposit();
             case 5 -> withdraw();
-            case 6 -> System.exit(0);
+            case 0 -> System.exit(0);
             default -> System.out.println("Invalid option!");
         }
     }

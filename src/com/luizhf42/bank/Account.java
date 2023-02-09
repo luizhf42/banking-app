@@ -22,4 +22,8 @@ public class Account {
     public long getBalance() {
         return balance;
     }
+
+    protected void updateBalance(long newBalance) {
+        this.balance = newBalance;
+    }
 }

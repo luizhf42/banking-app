@@ -19,7 +19,7 @@ public class ATM {
     }
 
     public void showMenu() {
-        System.out.println("Menu: ");
+        System.out.println("\nMenu: ");
         System.out.println("1 - Show all accounts");
         System.out.println("2 - Show one account");
         System.out.println("3 - Create new account");
@@ -33,7 +33,7 @@ public class ATM {
         switch (chosenOption) {
             case 1 -> showAccounts();
             case 2 -> {
-                int index = readAccountId() - 1;
+                int index = readAccountId("Insert the account ID: ") - 1;
                 showAccountDetails(index);
             }
             case 3 -> createAccount();
@@ -71,8 +71,9 @@ public class ATM {
 
         final Account account = accounts.get(accountIndex);
         final long actualBalance = account.getBalance();
-        account.updateBalance(actualBalance + amount);
-        System.out.printf("Success! Now your balance is %d", actualBalance);
+        final long newBalance = actualBalance + amount;
+        account.updateBalance(newBalance);
+        System.out.printf("Success! Now your balance is %d \n", newBalance);
     }
 
     private void withdraw() {
@@ -85,7 +86,7 @@ public class ATM {
         final long newBalance = actualBalance - amount;
         if (newBalance >= 0) {
             account.updateBalance(newBalance);
-            System.out.printf("Success! Now your balance is %d", actualBalance);
+            System.out.printf("Success! Now your balance is %d\n", newBalance);
         } else System.out.println("Insufficient balance to withdraw!");
     }
 

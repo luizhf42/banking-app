@@ -25,6 +25,7 @@ public class ATM {
         System.out.println("3 - Create new account");
         System.out.println("4 - Make a deposit");
         System.out.println("5 - Withdraw money");
+        System.out.println("6 - Transfer money");
         System.out.println("0 - Exit the ATM");
         System.out.print("Choose an option: ");
         final int chosenOption = scanner.nextInt();
@@ -39,6 +40,7 @@ public class ATM {
             case 3 -> createAccount();
             case 4 -> deposit();
             case 5 -> withdraw();
+            case 6 -> transferMoney();
             case 0 -> System.exit(0);
             default -> System.out.println("Invalid option!");
         }
@@ -88,6 +90,24 @@ public class ATM {
             account.updateBalance(newBalance);
             System.out.printf("Success! Now your balance is %d\n", newBalance);
         } else System.out.println("Insufficient balance to withdraw!");
+    }
+
+    private void transferMoney() {
+        final int firstAccountIndex = getAccountIndex("Insert the ID of the account sending the money: ");
+        final int secondAccountIndex = getAccountIndex("Insert the ID of the account receiving the money: ");
+        System.out.print("Insert the amount being transferred: ");
+        final long amount = scanner.nextLong();
+
+        final Account firstAccount = accounts.get(firstAccountIndex);
+        Account secondAccount = accounts.get(secondAccountIndex);
+        final long firstAccountBalance = firstAccount.getBalance();
+
+        if (amount > firstAccountBalance) System.out.println("Insufficient balance!");
+        else {
+            firstAccount.updateBalance(firstAccountBalance - amount);
+            secondAccount.updateBalance(secondAccount.getBalance() + amount);
+            System.out.printf("Successfully transferred %d to %s! \n", amount, secondAccount.getOwnerName());
+        }
     }
 
     private String readAccountOwnerName() {

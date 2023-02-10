@@ -65,22 +65,22 @@ public class ATM {
     }
 
     private void deposit() {
-        final int accountId = getAccountIndex();
+        final int accountIndex = getAccountIndex("Insert the account ID: ");
         System.out.print("Insert the amount you want to deposit: ");
         final long amount = scanner.nextLong();
 
-        final Account account = accounts.get(accountId - 1);
+        final Account account = accounts.get(accountIndex);
         final long actualBalance = account.getBalance();
         account.updateBalance(actualBalance + amount);
         System.out.printf("Success! Now your balance is %d", actualBalance);
     }
 
     private void withdraw() {
-        final int accountId = getAccountIndex();
+        final int accountIndex = getAccountIndex("Insert the account ID: ");
         System.out.print("Insert the amount you want to withdraw: ");
         final long amount = scanner.nextLong();
 
-        final Account account = accounts.get(accountId - 1);
+        final Account account = accounts.get(accountIndex);
         final long actualBalance = account.getBalance();
         final long newBalance = actualBalance - amount;
         if (newBalance >= 0) {
@@ -109,9 +109,9 @@ public class ATM {
         }
     }
 
-    private int readAccountId() {
+    private int readAccountId(String message) {
         while (true) try {
-            System.out.print("Insert the account ID: ");
+            System.out.print(message);
             return scanner.nextInt();
         } catch (InputMismatchException exception) {
             System.out.println("Invalid ID!");
@@ -119,13 +119,13 @@ public class ATM {
         }
     }
 
-    private int getAccountIndex() {
+    private int getAccountIndex(String message) {
         int accountId;
         while (true) try {
-            accountId = readAccountId();
+            accountId = readAccountId(message);
             if (accountId > accounts.size() + 1) {
                 throw new Exception();
-            } else return accountId;
+            } else return accountId - 1;
         } catch (Exception exception) {
             System.out.println("Nonexistent account ID! Try again!");
         }
